@@ -23,8 +23,24 @@ async function getData(apiUrl) {
             };
         });
 
-        // Imprime los datos 
-        console.log("Personajes vivos con nombres modificados:", modified_names_characters);
+        // Guarda solo las columnas que se piden mostrar como output
+        const required_info_characters = modified_names_characters.map(character => {
+            return {
+                id: character.id,
+                name: character.name,
+                status: character.status,
+                gender: character.gender
+            };
+        });
+
+        // Crea el JSON con la estructura requerida
+        const json_results = {
+            results: required_info_characters
+        };
+
+        // Imprime los datos
+        console.log("JSON de resultados:", json_results);
+
 
     } catch (error) {
         // Muestra error en caso de ocurrir
