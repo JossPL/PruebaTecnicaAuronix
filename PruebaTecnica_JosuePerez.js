@@ -12,8 +12,11 @@ async function getData(apiUrl) {
         // Convierte los resultados a JSON
         const json_data = await result.json();
 
+        // Filtra personajes vivos
+        const alive_characters = json_data.results.filter(character => character.status === "Alive");
+
         // Imprime los datos 
-        console.log("Personajes obtenidos:", json_data);
+        console.log("Personajes vivos:", alive_characters);
 
     } catch (error) {
         // Muestar error en caso de ocurrir
