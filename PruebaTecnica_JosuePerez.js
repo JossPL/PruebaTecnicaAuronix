@@ -15,11 +15,19 @@ async function getData(apiUrl) {
         // Filtra personajes vivos
         const alive_characters = json_data.results.filter(character => character.status === "Alive");
 
+        // Reemplaza espacios por guiones bajos en los nombres
+        const modified_names_characters = alive_characters.map(character => {
+            return {
+                ...character,                               // Copia todas las propiedades del objeto
+                name: character.name.replace(/ /g, "_")     // Modifica el nombre
+            };
+        });
+
         // Imprime los datos 
-        console.log("Personajes vivos:", alive_characters);
+        console.log("Personajes vivos con nombres modificados:", modified_names_characters);
 
     } catch (error) {
-        // Muestar error en caso de ocurrir
+        // Muestra error en caso de ocurrir
         console.error("Ocurrió un error:", error.message);
     }
 }
